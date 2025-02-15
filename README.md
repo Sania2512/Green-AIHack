@@ -46,7 +46,7 @@ La performance du modèle est évaluée à l'aide des métriques de précision, 
 Clonez ce dépôt :
 ```bash
 git clone https://github.com/votre-utilisateur/votre-repo.git
-- Branch "moussa" créé pour le test du modèle dans le main actuel mais avec une plus grande partie des éléments de la data set choisie (80%)
+- Branch "moussa" créé pour le test du modèle dans le main actuel mais avec une plus grande partie des éléments de la data set choisie (100%)
 
 ## Entraînement
 
