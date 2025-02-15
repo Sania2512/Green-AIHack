@@ -17,7 +17,7 @@ Les données d'entrées se composent d'images classées en deux catégories : "N
 
 ## Modèle
 
-Nous avons utilisé un autoencodeur convolutif composé d'un encodeur et d'un décodeur. L'encodeur compresse les images d'entrée en une représentation compacte (bottleneck), et le décodeur reconstruit les images à partir de cette représentation.
+Nous avons utilisé un autoencodeur convolutif composé d'un encodeur et d'un décodeur. L'encodeur compresse les images d'entrée en une représentation compacte (bottleneck), et le décodeur reconstruit les images à partir de cette représentation. Mais nous avons également traité la méthode classification par extension qui  consiste à organiser et catégoriser les fichiers en fonction de leur type (fait sur la branche main).
 
 ## Entraînement
 
@@ -46,7 +46,8 @@ La performance du modèle est évaluée à l'aide des métriques de précision, 
 Clonez ce dépôt :
 ```bash
 git clone https://github.com/votre-utilisateur/votre-repo.git
-- Branch "moussa" créé pour le test du modèle dans le main actuel mais avec une plus grande partie des éléments de la data set choisie (100%)
+- Branch "moussa" créé pour le test du modèle avec autoencodeur mais avec une plus grande partie des éléments de la data set choisie (100%) 
+- Branch "adji" créé pour le test du modèle d'autonconteneur avec moins d'échantillon.
 
 ## Entraînement
 
