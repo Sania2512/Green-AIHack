@@ -53,4 +53,4 @@ git clone https://github.com/votre-utilisateur/votre-repo.git
 
 - python train_auto.py
 
-
+Ce fichier de readme est accopmagné d'un fichier "script".
