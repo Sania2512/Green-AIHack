@@ -39,6 +39,7 @@ La performance du modèle est évaluée à l'aide des métriques de précision, 
 - PIL (Pillow)
 - tranformers
 - Hugging face
+- - CodeCarbon
 
 ## Installation
 
