@@ -1,3 +1,4 @@
+import os
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -36,14 +37,10 @@ class ConvAutoencoder(nn.Module):
         return decoded
     
 
-def main():
-
-    data_root = "C:\\Users\\xadee\\OneDrive\\Bureau\\Projet_ALTEN\\pcb4\\Data\\Images\\Normal"
-    batch_size = 32
-    num_epochs = 5
-    learning_rate = 1e-3
-    image_size = (128, 128)  
-    model_save_path = "autoencoder.pth"
+def train_model_for_category(category, data_root, batch_size, num_epochs, learning_rate, image_size, model_save_path):
+    # Vérifier que le répertoire contient des sous-dossiers
+    if not os.path.exists(data_root) or not os.listdir(data_root):
+        raise FileNotFoundError(f"Le répertoire {data_root} ne contient pas de sous-dossiers de classes d'images.")
 
     # Transformations sur les images
     transform = transforms.Compose([
@@ -70,11 +67,25 @@ def main():
             loss.backward()
             optimizer.step()
         
-        print(f"Epoch [{epoch+1}/{num_epochs}], Loss: {loss.item():.4f}")
+        print(f"Catégorie: {category}, Epoch [{epoch+1}/{num_epochs}], Loss: {loss.item():.4f}")
     
     # Sauvegarde du modèle
     torch.save(model.state_dict(), model_save_path)
-    print("Modèle sauvegardé avec succès !")
+    print(f"Modèle de la catégorie {category} sauvegardé avec succès !")
+
+
+def main():
+    categories = ["pcb1", "pcb2", "pcb3", "pcb4", "capsules", "macaroni1", "chewinggum", "macaroni2", "candle", "cashew", "pipe_fryum", "fryum"]
+    base_data_root = "C:\\Users\\mouss\\OneDrive\\Documents\\GitHub\\Green-AIHack\\Dataset"
+    batch_size = 32
+    num_epochs = 7
+    learning_rate = 1e-3
+    image_size = (128, 128)  
+
+    for category in categories:
+        data_root = os.path.join(base_data_root, f"{category}\\Data\\Images\\Normal")
+        model_save_path = f"{category}_autoencoder.pth"
+        train_model_for_category(category, data_root, batch_size, num_epochs, learning_rate, image_size, model_save_path)
 
 
 if __name__ == "__main__":
@@ -83,8 +94,3 @@ if __name__ == "__main__":
     main()
     emissions = tracker.stop()
     print(f"Émissions totales (entraînement) : {emissions:.6f} kg CO₂ eq")
-
-
-
-
-
