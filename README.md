@@ -1,5 +1,5 @@
 # Green-AIHack
-# Détection d'Images Normales et Anormales gràce à un modèle
+# Détection d'Images Normales et Anormales grâce à un modèle (code de base dans le dossier "Donnes PCB4")
 
 ## Description du Projet
 
@@ -26,11 +26,11 @@ Finalement, nous avons opté pour la méthode autoencodeur, car elle est plus l�
 
 ## Entraînement
 
-L'entraînement se fait en utilisant une fonction de perte qui mesure l'erreur de reconstruction (erreur quadratique moyenne, MSE). Le modèle est entraîné pour minimiser cette erreur. Le code d'entraînement se trouve dans `train_autoencoder.py`.
+L'entraînement se fait en utilisant une fonction de perte qui mesure l'erreur de reconstruction (erreur quadratique moyenne, MSE). Le modèle est entraîné pour minimiser cette erreur. Le code d'entraînement se trouve dans 'train_autoencoder.py' dans le fichier 'données pcb4'.
 
 ## Détection d'Anomalies
 
-Pour détecter les anomalies, nous comparons l'erreur de reconstruction d'une image avec un seuil prédéfini. Si l'erreur dépasse ce seuil, l'image est classée comme anormale. Le code de détection d'anomalies se trouve dans `test_auto.py`.
+Pour détecter les anomalies, nous comparons l'erreur de reconstruction d'une image avec un seuil prédéfini. Si l'erreur dépasse ce seuil, l'image est classée comme anormale. Le code de détection d'anomalies se trouve dans `test_auto.py` dans le fichier 'données pcb4'.
 
 ## Performance
 
