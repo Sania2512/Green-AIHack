@@ -1,0 +1,61 @@
+Dans ce hackathon qui s'est déroulée en 20h non-stop, l’objectif principal est de détecter les anomalies dans des images
+en restant frugal – c’est-à-dire en consommant le moins de ressources possible et en
+minimisant l’empreinte carbone. Pour y parvenir, nous avons étudié deux solutions
+principales, sans recourir à de gros modèles d’IA complexes, souvent trop coûteux
+en calcul.
+ 
+1. L’autoencodeur convolutif (non supervisé)
+Principe
+- Nous utilisons un petit réseau qui apprend à reconstruire uniquement des images normales.
+Une fois entraîné, si la reconstruction d’une image est mauvaise (erreur élevée), nous
+en déduisons qu’elle est probablement anormale.
+ 
+Avantages
+- Il ne nécessite aucun label d’anomalie.
+- Modèle léger et très économe (petite architecture, petit batch size).
+ 
+Inconvénients
+- Il faut définir un seuil pour distinguer normal et anomalie. Pour cela, nous avons
+calculé l’erreur moyenne de reconstruction sur les données normales et anormales,
+puis cherché le seuil qui maximise l’accuracy (approche “greedy”).
+- Il peut parfois reconstruire trop bien certaines anomalies (risque de faux négatifs).
+ 
+Conclusion (autoencodeur)
+- Simple, frugal, et sans dépendre de gros modèles d’IA. Il convient parfaitement si l’on
+n’a pas de dataset labellisé et qu’on veut réduire au maximum la consommation
+de ressources (CO₂ eq ~ 0.000056 kg).
+ 
+2. La classification binaire (supervisée)
+Principe
+- Partir d’un ResNet pré-entraîné, supprimer la dernière couche, la remplacer par
+un classifieur binaire (normal/anomalie), puis entraîner ce nouveau classifieur sur
+un dataset labellisé.
+ 
+Avantages
+- Exploite les caractéristiques déjà apprises (meilleures performances si on dispose
+de suffisamment d’exemples d’anomalies).
+- Pas besoin de seuil de reconstruction : on obtient directement une probabilité d’anomalie.
+ 
+Inconvénients
+- Requiert un dataset labellisé (y compris pour les anomalies), et un réseau
+pré-entraîné potentiellement un peu moins économe qu’un autoencodeur, sauf si l’on gèle
+la plupart des couches.
+
+ 
+Pourquoi pas de “gros modèles d’IA” ?
+Nous avons choisi de ne pas utiliser des architectures gigantesques ou des approches
+type GPT/transformers, car :
+1. Frugalité : ces modèles massifs exigent une énorme puissance de calcul et de
+grandes quantités de données, ce qui va à l’encontre de notre objectif “green”.
+2. Simplicité : un autoencodeur léger ou un classifieur binaire sur un ResNet
+pré-entraîné suffisent pour la plupart des cas pratiques, sans exploser notre budget carbone.
+ 
+Conclusion générale
+En résumé, nous avons comparé deux méthodes de détection d’anomalies :
+- L’autoencodeur convolutif, non supervisé, très léger, parfait pour un contexte frugal
+si l’on ne dispose pas de labels d’anomalie.
+- La classification binaire, supervisée, plus performante si l’on a des données
+labellisées, mais un peu moins économe qu’un petit autoencodeur.
+ 
+Dans tous les cas, nous évitons les gros modèles d’IA, car ils sont inadaptés à notre
+objectif de frugalité et à la nature spécifique de la détection d’anomalies.
