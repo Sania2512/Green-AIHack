@@ -17,7 +17,12 @@ Les données d'entrées se composent d'images classées en deux catégories : "N
 
 ## Modèle
 
-Nous avons utilisé un autoencodeur convolutif composé d'un encodeur et d'un décodeur. L'encodeur compresse les images d'entrée en une représentation compacte (bottleneck), et le décodeur reconstruit les images à partir de cette représentation. Mais nous avons également traité la méthode classification par extension qui  consiste à organiser et catégoriser les fichiers en fonction de leur type (fait sur la branche main).
+Nous avons utilisé un autoencodeur convolutif, composé d’un encodeur (qui compresse l’image dans une représentation compacte) et d’un décodeur (qui reconstruit l’image depuis cette représentation).
+L’autoencodeur est entraîné uniquement sur des images normales, de sorte qu’il apprenne la « normalité ». Lors de l’inférence, si on lui fournit une image anormale, l’erreur de reconstruction a tendance à être élevée, ce qui permet de détecter l’anomalie.
+
+Par ailleurs, nous avons aussi expérimenté une méthode de classification binaire : on supprime la dernière couche d’un réseau pré-entraîné (ResNet dans notre cas) pour en faire un classifieur (normal vs. anomal). 
+
+Finalement, nous avons opté pour la méthode autoencodeur, car elle est plus légère, requiert moins de ressources et reste performante dans notre cas.
 
 ## Entraînement
 
@@ -46,8 +51,10 @@ La performance du modèle est évaluée à l'aide des métriques de précision, 
 Clonez ce dépôt :
 ```bash
 git clone https://github.com/votre-utilisateur/votre-repo.git
-- Branch "moussa" créé pour le test du modèle avec autoencodeur mais avec une plus grande partie des éléments de la data set choisie (100%) 
-- Branch "adji" créé pour le test du modèle d'autonconteneur avec moins d'échantillon.
+- Branch "moussa" créé pour tester le modèle autoencodeur sur l'ensemble des 12 échantillons.
+
+- Branch "adji" créé pour tester  le modèle autoencodeur spécialisé sur l'échantillon PCB4.
+
 
 ## Entraînement
 
