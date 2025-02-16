@@ -53,7 +53,7 @@ threshold = st.sidebar.slider(
 st.title("EcoDetect")
 
 st.markdown("""
-Avec notre approche basée sur les auto-encodeurs convolutifs, si l’erreur de reconstruction d’une image dépasse le seuil, 
+Avec notre approche basée sur les auto-encodeurs convolutifs, si l erreur de reconstruction d une image dépasse le seuil, 
 nous la considérons comme anormale. Dans le cas contraire, elle est jugée normale.
 """)
 
