@@ -13,7 +13,7 @@ Le projet est organisé comme suit :
 
 ## Données
 
-Les données d'entrées se composent d'images classées en deux catégories : "Normal" et "Anomaly". Chaque catégorie contient des sous-dossiers représentant différentes classes d'images.
+Les données d'entrées se composent d'images classées en deux catégories : "Normal" et "Anomaly". Chaque catégorie contient des sous-dossiers représentant différentes classes d'images. Le code de vase se situe dans le dossier "Donnees PCB4" et les fichiers de présentation et de démo sont dans le répertoire principale.
 
 ## Modèle
 
