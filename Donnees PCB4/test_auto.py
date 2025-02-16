@@ -53,7 +53,7 @@ if __name__ == "__main__":
 
     mse_loss = nn.MSELoss()
 
-    # 1) Récupérer toutes les erreurs et labels
+    # 1) Récupérer les erreurs et labels
     all_errors = []
     all_labels = []
 

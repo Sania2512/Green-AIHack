@@ -84,7 +84,7 @@ def main():
             running_loss += loss.item()
         train_loss = running_loss / len(train_loader)
 
-        #  Validation 
+        # validation 
         model.eval()
         val_loss_total = 0.0
         with torch.no_grad():
